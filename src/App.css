@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
+/* .App{
+  font-family: 'Slabo 27px', serif;
+} */
+.title {
+  font-family: 'Pacifico', cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.favorites{
+  font-family: 'Pacifico', cursive;
+  margin-left: 450px;
+  margin-right: auto;
+  font-size: xxx-large;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.fav-info{
+  font-family: 'Pacifico', cursive;
+  font-size: x-large;
+  margin-left: 25px;
+  margin-right: 25px;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.info {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.welcome {
+  font-family: 'Pacifico', cursive;
+  font-size: xxx-large;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+}
+  
+
+.intro {
+  font-family: 'Pacifico', cursive;
+    font-size: x-large;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 16px;
+    margin-bottom: 69px;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.charity-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+  
+}
+
+.charity-card {
+  background-color: rebeccapurple;
+  color: whitesmoke;
+  flex-direction: row;
+  width: 300px;
+  height: 310px;
+  box-shadow: 0 6px 33px -4px black;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  overflow-wrap: anywhere;
+  padding: 19px;
+  margin: 13px;
+  border-radius: 24px;
+  
+  
 }
