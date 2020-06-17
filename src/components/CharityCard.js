@@ -16,7 +16,7 @@ export default class CharityCard extends Component {
   }
 
   handleChange = (event) => {
-    const {name, value, checked} = event.target
+    let {name, value, checked} = event.target
     value = name === "checkbox" ? checked : value
 
     this.setState({[name]: value})
@@ -42,8 +42,8 @@ export default class CharityCard extends Component {
                 <button key={this.props.charity.id} className="remove-fav" onClick={this.handleClick}>Remove Favorite</button> 
                 <form onSubmit={this.handleSubmit}>
                 <label>I Donated!</label>
-                <input type="checkbox" value={checkbox} checked={this.state.checkbox} name="checkbox" />
-                <input placeholder="amount" value={amount} name="amount" onChange={this.handleChange} />
+                <input type="checkbox" value={this.state.checkbox} checked={this.state.checkbox} name="checkbox" />
+                <input placeholder="amount" value={this.state.amount} name="amount" onChange={this.handleChange} />
                 <input type="submit" />
                 </form>
                 </div>
