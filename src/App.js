@@ -12,6 +12,7 @@ const charitiesUrl = 'http://localhost:3000/charities'
 const favoritesUrl='http://localhost:3000/favorites'
 const donationUrl='http://localhost:3000/donations'
 const userUrl='http://localhost:3000/users'
+const loginUrl = 'http://localhost:3000/login'
 
 class App extends Component{
 
@@ -27,53 +28,79 @@ class App extends Component{
       this.getFavorites()
   }
 
+  
+
+  login = (user) => {
+      fetch(loginUrl, {
+        method: "POST",
+        headers:{
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({user})
+      })
+        .then(response => response.json())
+        .then(response => console.log(response))
+  }
+
   getCharities(){
-      fetch(charitiesUrl)
+    fetch(charitiesUrl)
       .then(response => response.json())
       .then(charities => this.setState({charities}) ) 
   }
 
-  getFavorites(){
-      fetch(favoritesUrl)
+  getFavorites = () => {
+    fetch(favoritesUrl)
       .then(response => response.json())
       .then(favorites => {
+          console.log(favorites)
           let newFavorites = favorites.map(favorite => {
               let foundFavorite = this.state.charities.find(charity => charity.id === favorite.charity_id)
-              return foundFavorite ? foundFavorite : null
+              return foundFavorite ? foundFavorite : {}
           })
           this.setState({
               favorites: newFavorites
           })
       })
   }
+  
 
-  addFavorite = (charity, charity_id, user_id) => {
-      const favorite = {charity_id, user_id}
-
-      if(!this.state.favorites.find(favorite => favorite === charity))
-      this.setState({favorites: [...this.state.favorites, charity]})
-
-      let newFavorites = {
-        ...favorite,
-        charity_id: charity.id,
-        user_id: 1
-      }
-
-      fetch(favoritesUrl, {
+  addFavorite = (charity) => {
+     
+    fetch(favoritesUrl, {
       method: "POST",
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({favorites: newFavorites})
+      body: JSON.stringify({
+        charity_id: charity.id,
+        user_id: 1
       })
+    }).then(response => response.json())
+      .then(favorite => this.setState({favorites: [...this.state.favorites, favorite]}))
   }
 
-  removeFavorite = (id) => {
-      let newFavorites = this.state.favorites.filter(favorite => favorite.id !== id)
-      this.setState({favorites: newFavorites})
-      fetch(`${favoritesUrl}/${id}`, {
+  // setFavorite(){
+  //   fetch(favoritesUrl)
+  //     .then(response =>  response.json())
+  //     .then(favorites => ))
+  // }
+  
+
+  removeFavorite = (favorite) => {
+      console.log(this.state.favorites)
+      console.log(favorite.id)
+      
+      fetch(`${favoritesUrl}/${favorite.id}`, {
       method: "DELETE"
-      })
+      });this.setNewFavorite()
+  }
+
+  setNewFavorite(){
+    let newFavorites = this.state.favorites.filter(favorite => favorite !== favorite)
+    this.setState({favorites: newFavorites})
+    fetch(favoritesUrl)
+      .then(response => response.json())
+      .then(favorites => this.setState({favorites: newFavorites}))
   }
 
   addDonation = (charity_id, charity, amount, user_id) => {
@@ -114,10 +141,8 @@ class App extends Component{
                 <FavoritesPage favorites={this.state.favorites} addDonation={this.addDonation} clickAction={this.removeFavorite} /> 
               </Route>
               
-              <Route path='/login'>
-                <Login />
-              </Route>
-             
+              <Route path='/login' render={(routerProps) => <Login {...routerProps} login={this.login}/>}/>
+              
               </div>
           </Router>  
       </div>

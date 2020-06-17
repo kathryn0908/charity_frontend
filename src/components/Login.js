@@ -16,11 +16,13 @@ export default class Login extends Component{
 
     handleSubmit(event){
         event.preventDefault()
+        this.props.login(this.state)
     }    
 
 
     render() {
-        const { username, password} = this.state
+        const { username, password } = this.state
+    
         return(
             <div>
             <h1>Login</h1>

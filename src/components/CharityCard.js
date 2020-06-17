@@ -23,8 +23,7 @@ export default class CharityCard extends Component {
   }
 
 
-   handleClick = () => {
-       console.log('clicked')
+   handleClick = (event) => {
        this.props.clickAction(this.props.charity);
    }
 
@@ -42,7 +41,7 @@ export default class CharityCard extends Component {
                 <button key={this.props.charity.id} className="remove-fav" onClick={this.handleClick}>Remove Favorite</button> 
                 <form onSubmit={this.handleSubmit}>
                 <label>I Donated!</label>
-                <input type="checkbox" value={this.state.checkbox} checked={this.state.checkbox} name="checkbox" />
+                <input type="checkbox" value={this.state.checkbox} checked={this.state.checkbox} name="checkbox" onChange={this.handleChange} />
                 <input placeholder="amount" value={this.state.amount} name="amount" onChange={this.handleChange} />
                 <input type="submit" />
                 </form>
