@@ -49,7 +49,7 @@ class App extends Component{
 
   addFavorite = (charity, charity_id, user_id) => {
       const favorite = {charity_id, user_id}
-      
+
       if(!this.state.favorites.find(favorite => favorite === charity))
       this.setState({favorites: [...this.state.favorites, charity]})
 
@@ -68,10 +68,10 @@ class App extends Component{
       })
   }
 
-  removeFavorite = (charity) => {
-      let newFavorites = this.state.favorites.filter(favorite => favorite !== charity)
+  removeFavorite = (id) => {
+      let newFavorites = this.state.favorites.filter(favorite => favorite.id !== id)
       this.setState({favorites: newFavorites})
-      fetch(favoritesUrl, {
+      fetch(`${favoritesUrl}/${id}`, {
       method: "DELETE"
       })
   }

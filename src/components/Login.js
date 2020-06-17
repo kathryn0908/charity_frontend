@@ -1,45 +1,39 @@
 import React, { Component } from 'react';
 
-const userUrl='http://localhost:3000/users'
 
 export default class Login extends Component{
 
-    state = {
-        users: []
+    state= {
+        username: "",
+        password: ""
     }
 
-    componentDidMount(){
-        fetch(userUrl)
-            .then(response => response.json())
-            .then(users => this.setState({users}))
+    handleChange = (event) => {
+        const {name, value} = event.target
+
+        this.setState({ [name]: value})
     }
-
-
-
-    // createUser(){
-
-    // }
 
     handleSubmit(event){
         event.preventDefault()
-        // createUser()
-        event.reset()
     }    
 
 
     render() {
+        const { username, password} = this.state
         return(
             <div>
-            <form>
+            <h1>Login</h1>
+            <form onSubmit={this.handleSubmit} className='login'>
             <div>
-                <input type="text" name="username" placeholder="Username" />
+                <input type="text" name="username" value={username} placeholder="Username" onChange={this.handleChange} />
                 <label htmlFor="username">Username</label>
             </div>
             <div>
-                <input type="password" name="password" placeholder="Password" />
+                <input type="password" name="password" value={password} placeholder="Password" onChange={this.handleChange} />
                 <label htmlFor="password">Password</label>
             </div>
-            <input type="submit" value="Login" onSubmit={this.handleSubmit}/>
+            <input type="submit" />
             </form>
             </div>
         );
