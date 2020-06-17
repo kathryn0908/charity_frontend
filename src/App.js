@@ -51,17 +51,9 @@ class App extends Component{
   getFavorites = () => {
     fetch(favoritesUrl)
       .then(response => response.json())
-      .then(favorites => {
-          console.log(favorites)
-          let newFavorites = favorites.map(favorite => {
-              let foundFavorite = this.state.charities.find(charity => charity.id === favorite.charity_id)
-              return foundFavorite ? foundFavorite : {}
-          })
-          this.setState({
-              favorites: newFavorites
-          })
-      })
+      .then(favorites => {this.setState({favorites})})
   }
+  
   
 
   addFavorite = (charity) => {
@@ -95,8 +87,8 @@ class App extends Component{
       });this.setNewFavorite()
   }
 
-  setNewFavorite(){
-    let newFavorites = this.state.favorites.filter(favorite => favorite !== favorite)
+  setNewFavorite = () => {
+    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== favorite)
     this.setState({favorites: newFavorites})
     fetch(favoritesUrl)
       .then(response => response.json())
@@ -123,7 +115,7 @@ class App extends Component{
         donation: newDonation
       })
     })
-  }
+  };
   
   
   

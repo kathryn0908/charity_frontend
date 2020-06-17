@@ -5,9 +5,9 @@ export default class Favorites extends Component{
 
    createFavoriteCards = () => {
 
-       return this.props.favorites.map(charity=> {
+       return this.props.favorites.map(favorite => {
            
-            return <CharityCard key={charity.id} charity={charity} {...charity} clickAction={this.props.clickAction} addDonation={this.props.addDonation} favorited={true}/>
+            return <CharityCard key={favorite.id} favorite={favorite} {...favorite} clickAction={this.props.clickAction} addDonation={this.props.addDonation} favorited={true}/>
         })
     }
 

@@ -24,7 +24,7 @@ export default class CharityCard extends Component {
 
 
    handleClick = (event) => {
-       this.props.clickAction(this.props.charity);
+       this.props.clickAction(this.props.favorite);
    }
 
    render(){
@@ -34,7 +34,7 @@ export default class CharityCard extends Component {
         <div>
            {favorited 
            ? <div className="charity-card">
-               <h1>{this.props.charity.charity_name}</h1>
+               <h1>{this.props.favorite.charity.charity_name}</h1>
                 <p>{this.props.charity.category}</p>
                 <p>{this.props.charity.city}, {this.props.charity.state}</p>
                 <p>{this.props.charity.donation_url}</p>
