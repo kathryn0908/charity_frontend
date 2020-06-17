@@ -4,8 +4,10 @@ import CharityCard from '../components/CharityCard'
 export default class Favorites extends Component{
 
    createFavoriteCards = () => {
-       return this.props.favorites.map(charity => {
-            return <CharityCard key={charity.id} charity={charity} clickAction={this.props.clickAction} favorite={true}/>
+
+       return this.props.favorites.map(charity=> {
+           
+            return <CharityCard key={charity.id} charity={charity}  clickAction={this.props.clickAction} favorited={true}/>
         })
     }
 

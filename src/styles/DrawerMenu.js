@@ -39,10 +39,10 @@ export default function SimpleMenu() {
       >
         <Route>
         <MenuItem >
-            <Link to='/favorites' onClick={handleClose}>Favorites</Link>
+          <Link to='/'>Home</Link>
             </MenuItem>
         <MenuItem onClick={handleClose}>
-            <Link to='/'>Home</Link>
+          <Link to='/favorites' onClick={handleClose}>Favorites</Link>
             </MenuItem>
         <MenuItem onClick={handleClose}>
             <Link to='/login'>Login</Link>
