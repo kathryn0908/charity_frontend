@@ -10,12 +10,16 @@ import FavoritesPage from './FavoritesPage'
 
 const charitiesUrl = 'http://localhost:3000/charities'
 const favoritesUrl='http://localhost:3000/favorites'
+const donationUrl='http://localhost:3000/donations'
+const userUrl='http://localhost:3000/users'
 
 class App extends Component{
 
     state= {
       charities: [],
-      favorites: []
+      favorites: [],
+      donations: [],
+      user: {}
   }
 
   componentDidMount(){
@@ -43,16 +47,24 @@ class App extends Component{
       })
   }
 
-  addFavorite = (charity) => {
+  addFavorite = (charity, charity_id, user_id) => {
+      const favorite = {charity_id, user_id}
+      
       if(!this.state.favorites.find(favorite => favorite === charity))
       this.setState({favorites: [...this.state.favorites, charity]})
+
+      let newFavorites = {
+        ...favorite,
+        charity_id: charity.id,
+        user_id: 1
+      }
 
       fetch(favoritesUrl, {
       method: "POST",
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({charity})
+      body: JSON.stringify({favorites: newFavorites})
       })
   }
 
@@ -62,6 +74,28 @@ class App extends Component{
       fetch(favoritesUrl, {
       method: "DELETE"
       })
+  }
+
+  addDonation = (charity_id, charity, amount, user_id) => {
+    const donation = {charity_id, amount, user_id}
+    this.setState({donations: [...this.state.donations, donation]})
+
+    let newDonation = {
+      ...donation,
+      charity_id: charity.id,
+      amount: amount,
+      user_id: 1
+    }
+    
+    fetch(donationUrl, {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        donation: newDonation
+      })
+    })
   }
   
   
@@ -77,7 +111,7 @@ class App extends Component{
               </Route>
 
               <Route path='/favorites'>
-                <FavoritesPage favorites={this.state.favorites} clickAction={this.removeFavorite} /> 
+                <FavoritesPage favorites={this.state.favorites} addDonation={this.addDonation} clickAction={this.removeFavorite} /> 
               </Route>
               
               <Route path='/login'>

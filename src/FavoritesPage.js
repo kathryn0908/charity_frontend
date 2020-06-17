@@ -7,7 +7,7 @@ export default class FavoritesPages extends Component{
     render(){
         return(
             <>
-            <Favorites favorites={this.props.favorites} clickAction={this.props.clickAction} />
+            <Favorites favorites={this.props.favorites} clickAction={this.props.clickAction} addDonation={this.props.addDonation}/>
             </>
         )
     }
