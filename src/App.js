@@ -8,6 +8,7 @@ import FavoritesPage from './FavoritesPage'
 
 
 
+
 const charitiesUrl = 'http://localhost:3000/charities'
 const favoritesUrl='http://localhost:3000/favorites'
 const donationUrl='http://localhost:3000/donations'
@@ -26,17 +27,21 @@ class App extends Component{
   componentDidMount(){
       this.getCharities()
       this.getFavorites()
+      this.getDonation()
   }
 
   
 
-  login = (user) => {
+  login = (username, password) => {
       fetch(loginUrl, {
         method: "POST",
         headers:{
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({user})
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
       })
         .then(response => response.json())
         .then(response => console.log(response))
@@ -51,59 +56,58 @@ class App extends Component{
   getFavorites = () => {
     fetch(favoritesUrl)
       .then(response => response.json())
-      .then(favorites => {this.setState({favorites})})
+      .then(favorites => this.setState({favorites}))
+  }
+
+  getDonation = () => {
+    fetch(donationUrl)
+      .then(response => response.json())
+      .then(donations => this.setState({donations}) )
   }
   
   
 
-  addFavorite = (charity) => {
-     
+  addFavorite = (favorite) => {
+    // const favorite = {charity_id, user_id, charity}
+
+    this.setState({favorites: [...this.state.favorites, favorite]})
+
+    console.log(favorite)
     fetch(favoritesUrl, {
       method: "POST",
       headers: {
           'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        charity_id: charity.id,
-        user_id: 1
+        charity_id: 2,
+        user_id: 3
+        
       })
-    }).then(response => response.json())
-      .then(favorite => this.setState({favorites: [...this.state.favorites, favorite]}))
+    })
+    
   }
 
-  // setFavorite(){
-  //   fetch(favoritesUrl)
-  //     .then(response =>  response.json())
-  //     .then(favorites => ))
-  // }
   
-
   removeFavorite = (favorite) => {
-      console.log(this.state.favorites)
-      console.log(favorite.id)
+    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== favorite)
+    this.setState({favorites: newFavorites})
+    
       
       fetch(`${favoritesUrl}/${favorite.id}`, {
       method: "DELETE"
-      });this.setNewFavorite()
+      });
   }
 
-  setNewFavorite = () => {
-    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== favorite)
-    this.setState({favorites: newFavorites})
-    fetch(favoritesUrl)
-      .then(response => response.json())
-      .then(favorites => this.setState({favorites: newFavorites}))
-  }
 
-  addDonation = (charity_id, charity, amount, user_id) => {
+  addDonation = (charity_id, amount, user_id) => {
     const donation = {charity_id, amount, user_id}
     this.setState({donations: [...this.state.donations, donation]})
 
     let newDonation = {
       ...donation,
-      charity_id: charity.id,
+      charity_id: 2,
       amount: amount,
-      user_id: 1
+      user_id: 3
     }
     
     fetch(donationUrl, {
@@ -116,6 +120,8 @@ class App extends Component{
       })
     })
   };
+
+  
   
   
   
@@ -125,13 +131,19 @@ class App extends Component{
         <AppMenuBar />    
           <Router>
             <div className="routes">
+            
               <Route exact path='/'>
                 <CharitiesPage charities={this.state.charities} clickAction={this.addFavorite}/>
               </Route>
 
               <Route path='/favorites'>
-                <FavoritesPage favorites={this.state.favorites} addDonation={this.addDonation} clickAction={this.removeFavorite} /> 
+                <FavoritesPage favorites={this.state.favorites} addDonation={this.addDonation} donations={this.state.donations} clickAction={this.removeFavorite} /> 
               </Route>
+
+              {/* <Route path='/donations'>
+                <Donations
+              </Route> */}
+              
               
               <Route path='/login' render={(routerProps) => <Login {...routerProps} login={this.login}/>}/>
               
