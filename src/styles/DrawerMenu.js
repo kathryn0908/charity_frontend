@@ -3,10 +3,11 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import { BrowserRouter as Route } from 'react-router-dom';
+import { Switch, Link } from 'react-router-dom';
 
-export default function SimpleMenu() {
+
+
+export default function SimpleMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -37,18 +38,25 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Route>
+        
         <MenuItem >
-          <Link to='/'>Home</Link>
-            </MenuItem>
+        <div>
+        <Link to='/'>Home</Link>
+        </div>
+        </MenuItem>
+
         <MenuItem onClick={handleClose}>
+          <div>
           <Link to='/favorites' onClick={handleClose}>Favorites</Link>
-            </MenuItem>
+          </div>
+        </MenuItem>
+
         <MenuItem onClick={handleClose}>
-            <Link to='/login'>Login</Link>
-            </MenuItem>
-        </Route>
-      
+          <div>
+            <Link to='/login' login={props.login}>Login</Link>
+          </div>
+        </MenuItem> 
+
       </Menu>
     </div>
   );

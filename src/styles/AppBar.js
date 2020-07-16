@@ -8,7 +8,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import DrawerMenu from './DrawerMenu';
 
-function AppMenuBar(){ 
+function AppMenuBar(props){ 
 
     const useStyles = makeStyles((theme) => ({
       appbar: {
@@ -82,7 +82,7 @@ function AppMenuBar(){
                 color="inherit"
                 aria-label="open drawer"
               >
-                <DrawerMenu />
+                <DrawerMenu charities={props.charities} clickAction={props.addFavorite} favorites={props.favorites} addDonation={props.addDonation} donations={props.donations} clickAction={props.removeFavorite} />
               </IconButton>
               <Typography className={classes.title} variant="h6" noWrap>
               <p className="title">Charity Organizer</p>

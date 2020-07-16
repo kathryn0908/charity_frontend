@@ -9,6 +9,7 @@ import FavoritesPage from './FavoritesPage'
 
 
 
+
 const charitiesUrl = 'http://localhost:3000/charities'
 const favoritesUrl='http://localhost:3000/favorites'
 const donationUrl='http://localhost:3000/donations'
@@ -79,7 +80,7 @@ class App extends Component{
           'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        charity_id: 2,
+        charity_id: charity.id,
         user_id: 3
         
       })
@@ -126,35 +127,32 @@ class App extends Component{
   
   
   render(){
-    return (
-      <div className="app">
-        <AppMenuBar />    
+      return (
+        <div className="app">
           <Router>
-            <div className="routes">
-            
-              <Route exact path='/'>
-                <CharitiesPage charities={this.state.charities} clickAction={this.addFavorite}/>
-              </Route>
-
-              <Route path='/favorites'>
-                <FavoritesPage favorites={this.state.favorites} addDonation={this.addDonation} donations={this.state.donations} clickAction={this.removeFavorite} /> 
-              </Route>
-
-              {/* <Route path='/donations'>
-                <Donations
-              </Route> */}
+          <AppMenuBar />    
+              <div className="routes">
               
-              
-              <Route path='/login' render={(routerProps) => <Login {...routerProps} login={this.login}/>}/>
-              
-              </div>
-          </Router>  
-      </div>
+                <Route exact path='/'>
+                  <CharitiesPage charities={this.state.charities} clickAction={this.addFavorite}/>
+                </Route>
   
+                <Route path='/favorites'>
+                  <FavoritesPage favorites={this.state.favorites} addDonation={this.addDonation} donations={this.state.donations} clickAction={this.removeFavorite} /> 
+                </Route>
+  
+                {/* <Route path='/donations'>
+                  <Donations
+                </Route> */}
+                
+                
+                <Route path='/login' render={(routerProps) => <Login {...routerProps} login={this.login}/>}/>
+                
+              </div>
+            </Router>  
+        </div>
     )
-
   }
-
 }
 
 export default App;
