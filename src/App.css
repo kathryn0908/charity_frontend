@@ -5,6 +5,50 @@
   font-family: 'Pacifico', cursive;
 }
 
+.login-header{
+  font-family: 'Pacifico', cursive;
+  font-size: 39px;
+  color: white;
+  margin-left: 116px;
+  margin-top: -28px;
+  margin-bottom: 7px;
+}
+
+.login{
+  margin-left: 488px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(102, 51, 153,.9);
+  width: 350px;
+  height: 300px;
+  border-radius: 8px;
+}
+
+.login-input{
+  width: 250px;
+  height: 20px;
+  margin: 12px;
+  margin-left: 42px;
+  border-color: white;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.login-submit{
+    width: 261px;
+    height: 24px;
+    margin: 6px;
+    margin-left: 42px;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 5px;
+    padding-bottom: 10px;
+    border-color: white;
+    background-color: white;
+    color: rebeccapurple;
+    font-weight: bold;
+}
+
 .fav-heading-container{
   display: flex;
   flex-direction: column;

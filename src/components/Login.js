@@ -25,17 +25,15 @@ export default class Login extends Component{
     
         return(
             <div>
-            <h1>Login</h1>
             <form onSubmit={this.handleSubmit} className='login'>
+            <h1 className='login-header'>Login</h1>
             <div>
-                <input type="text" name="username" value={username} placeholder="Username" onChange={this.handleChange} />
-                <label htmlFor="username">Username</label>
+                <input className='login-input' type="text" name="username" value={username} placeholder="Username" onChange={this.handleChange} />
             </div>
             <div>
-                <input type="password" name="password" value={password} placeholder="Password" onChange={this.handleChange} />
-                <label htmlFor="password">Password</label>
+                <input className='login-input'  type="password" name="password" value={password} placeholder="Password" onChange={this.handleChange} />
             </div>
-            <input type="submit" />
+            <input type="submit" className='login-submit'/>
             </form>
             </div>
         );
