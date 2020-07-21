@@ -69,24 +69,21 @@ class App extends Component{
   
 
   addFavorite = (charity_id, user_id) => {
+
+    let foundFavorite = this.state.favorites.find(favorite => favorite.charity_id == charity_id)
+    if(!foundFavorite){
+      const favorite = {charity_id, user_id}
+      this.setState({favorites: [...this.state.favorites, favorite]})
+    }
     const favorite = {charity_id, user_id}
-    console.log(favorite)
-
-    this.setState({favorites: [...this.state.favorites, favorite]})
-
-    
+   
     fetch(favoritesUrl, {
       method: "POST",
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify(
-        favorite
-        // charity_id: charity.id,
-        // user_id: 3
-      )
+      body: JSON.stringify(favorite)
     })
-    
   }
 
   
