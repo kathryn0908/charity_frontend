@@ -68,29 +68,31 @@ class App extends Component{
   
   
 
-  addFavorite = (favorite) => {
-    // const favorite = {charity_id, user_id, charity}
+  addFavorite = (charity_id, user_id) => {
+    const favorite = {charity_id, user_id}
+    console.log(favorite)
 
     this.setState({favorites: [...this.state.favorites, favorite]})
 
-    console.log(favorite)
+    
     fetch(favoritesUrl, {
       method: "POST",
       headers: {
           'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        charity_id: favorite.charity.id,
-        user_id: 3
-        
-      })
+      body: JSON.stringify(
+        favorite
+        // charity_id: charity.id,
+        // user_id: 3
+      )
     })
     
   }
 
   
   removeFavorite = (favorite) => {
-    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== favorite)
+    console.log(favorite.id)
+    let newFavorites = this.state.favorites.filter(favorite => favorite !== favorite)
     this.setState({favorites: newFavorites})
     
       
@@ -138,7 +140,7 @@ class App extends Component{
                 </Route>
   
                 <Route path='/favorites'>
-                  <FavoritesPage favorites={this.state.favorites} addDonation={this.addDonation} donations={this.state.donations} clickAction={this.removeFavorite} /> 
+                  <FavoritesPage favorites={this.state.favorites} charities={this.state.charities} addDonation={this.addDonation} donations={this.state.donations} clickAction={this.removeFavorite} /> 
                 </Route>
   
                 {/* <Route path='/donations'>

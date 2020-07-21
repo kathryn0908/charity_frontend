@@ -6,7 +6,7 @@ import React, { Component } from 'react'
         mostRecentDonation: ""
     }
 
-export default class CharityCard extends Component {
+export default class FavoriteCard extends Component {
 
   state = initialState
 
@@ -45,38 +45,32 @@ export default class CharityCard extends Component {
 
 
    handleClick = () => {
-       console.log(this.props.charity)
+       console.log(this.props)
        const user_id = 3
-       this.props.clickAction(this.props.charity.id, user_id, this.props.charity);
-   }
-
-   removeClick = () => {
-     console.log(this.props.favorite)
-     this.props.removeFavorite(this.props.favorite)
+       this.props.clickAction(this.props.charity.id, user_id, this.props.favorite);
    }
 
    render(){
-    let {category, charity_name, city, state, donation_url, id} = this.props
+    const {category, charity_name, city, state, donation_url, id} = this.props
     const {favorited} = this.props
-    
     return (
         <div>
            {favorited 
            ? <div className="charity-card">
-               <h1>{this.props.favorite.charity.charity_name}</h1>
-                <p>{this.props.favorite.charity.category}</p>
-                <p>{this.props.favorite.charity.city}, {this.props.favorite.charity.state}</p>
-                <p>{this.props.favorite.charity.donation_url}</p>
+               <h1>{this.props.charity.charity_name}</h1>
+                <p>{this.props.charity.category}</p>
+                <p>{this.props.charity.city}, {this.props.charity.state}</p>
+                <p>{this.props.charity.donation_url}</p>
                 <p>${this.state.mostRecentDonation}.00</p>
                 <p>{this.state.checkbox ? '$'+this.state.amount : null }</p> 
-                <button key={this.props.charity.id} className="remove-fav" onClick={this.removeClick}>Remove Favorite</button> 
+                <button key={this.props.charity.id} className="remove-fav" onClick={this.handleClick}>Remove Favorite</button> 
                 <form onSubmit={this.handleSubmit}>
                 <label>I Donated!</label>
                 <input type="checkbox" value={this.state.checkbox} checked={this.state.checkbox} name="donated" onChange={this.handleChange} />
                 <input placeholder="amount" value={this.state.amount} name="amount" onChange={this.handleChange} />
                 <input type="submit" />
                 </form>
-              </div>
+                </div>
            : <div className="charity-card">
                <h1>{charity_name}</h1>
                 <p>{category}</p>

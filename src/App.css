@@ -36,6 +36,13 @@
   margin-bottom: 46px;
 }
 
+.fav-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
 .info {
   display: flex;
   flex-direction: column;
