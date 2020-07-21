@@ -80,7 +80,7 @@ class App extends Component{
           'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        charity_id: charity.id,
+        charity_id: favorite.charity.id,
         user_id: 3
         
       })

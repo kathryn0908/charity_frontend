@@ -16,8 +16,11 @@ export default class Favorites extends Component{
     render(){
         return (
             <div>
+            <div className='fav-heading-container'>
             <h1 className="favorites">Your Charities</h1>
-            <p className="fav-info">Below you can keep track of all the charities you would like to donate to. Once you have donated, update the charity card with the amount donated to keep track of your donations.</p>
+            <p className="fav-info">Below you can keep track of all the charities you would like to donate to.</p>
+            <p className='fav-info2'>Once you have donated, update the charity card with the amount donated to keep track of your donations.</p>
+            </div>
             <ul>
             {this.createFavoriteCards()}
             </ul>

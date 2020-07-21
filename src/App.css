@@ -5,20 +5,35 @@
   font-family: 'Pacifico', cursive;
 }
 
+.fav-heading-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .favorites{
   font-family: 'Pacifico', cursive;
-  margin-left: 450px;
-  margin-right: auto;
   font-size: xxx-large;
+  margin-left: 600px;
 
 }
 
 .fav-info{
-  font-family: 'Pacifico', cursive;
-  font-size: x-large;
-  margin-left: 25px;
-  margin-right: 25px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 21px;
+  margin-left: 410px;
+  margin-right: 200px;
+  margin-top: -6px;
+  margin-bottom: 46px;
+}
 
+.fav-info2{
+  font-family: 'DM Sans', sans-serif;
+  font-size: 21px;
+  margin-left: 278px;
+  margin-right: 200px;
+  margin-top: -45px;
+  margin-bottom: 46px;
 }
 
 .info {
@@ -38,10 +53,10 @@
   
 
 .intro {
-  font-family: 'Pacifico', cursive;
+  font-family: 'DM Sans', sans-serif;
     font-size: x-large;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 155px;
+    margin-right: 155px;
     margin-top: 16px;
     margin-bottom: 69px;
 
