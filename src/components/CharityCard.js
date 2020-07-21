@@ -18,19 +18,25 @@ export default class CharityCard extends Component {
 
   handleSubmit = (event) => {
       event.preventDefault();
-      this.props.addDonation(this.props.charity.id, this.state.amount)
-      this.donations()
+      const user_id = 3
+      this.props.addDonation(this.props.charity.id, this.state.amount, user_id)
+      this.newDonations()
     }
 
   handleChange = (event) => {
     let {name, value, checked} = event.target
     value = name === "donated" ? checked : value
     this.toggleOn()
-    this.donations()
-
+    this.newDonations()
+    // console.log(this.props.donations)
     this.setState({[name]: value})
   }
 
+  newDonations = () => {
+   if (this.props.charity.donations > 2){
+      this.donations()
+   } 
+  }
   donations = () => {
     let mostRecentDonation = this.props.charity.donations.slice(-1);
     let newD = mostRecentDonation[0]["amount"]
@@ -62,11 +68,11 @@ export default class CharityCard extends Component {
     return (
         <div>
            {favorited 
-           ? <div className="charity-card">
-               <h1>{this.props.favorite.charity.charity_name}</h1>
+           ? <div className="favorite-card">
+               <h1 className='fav-title'>{this.props.favorite.charity.charity_name}</h1>
                 <p>{this.props.favorite.charity.category}</p>
                 <p>{this.props.favorite.charity.city}, {this.props.favorite.charity.state}</p>
-                <p>{this.props.favorite.charity.donation_url}</p>
+                <a className='donate-link' href={this.props.favorite.charity.donation_url}>Donate Here!</a>
                 <p>${this.state.mostRecentDonation}.00</p>
                 <p>{this.state.checkbox ? '$'+this.state.amount : null }</p> 
                 <button key={this.props.charity.id} className='button' onClick={this.removeClick}>Remove Favorite</button> 
@@ -78,10 +84,10 @@ export default class CharityCard extends Component {
                 </form>
               </div>
            : <div className="charity-card">
-               <h1>{charity_name}</h1>
+               <h1 className='card-title'>{charity_name}</h1>
                 <p>{category}</p>
                 <p>{city}, {state}</p>
-                <p>{donation_url}</p>
+                <a className='donate-link' href={donation_url}>Donate Here!</a>
                 <button key={id} className='button' onClick={this.handleClick}>Add Favorite</button> 
             </div>
            }

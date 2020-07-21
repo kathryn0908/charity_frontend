@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CharityCard from '../components/CharityCard'
+import Donations from './Donations'
 
 export default class Favorites extends Component{
 
@@ -7,7 +8,7 @@ export default class Favorites extends Component{
       
        return this.props.favorites.map(favorite => {
            
-            return <CharityCard key={favorite.id} favorite={favorite} {...favorite} removeFavorite={this.props.clickAction}  addDonation={this.props.addDonation} favorited={true}/>
+            return <CharityCard key={favorite.id} favorite={favorite} {...favorite} removeFavorite={this.props.clickAction}  addDonation={this.props.addDonation} favorited={true} donations={this.props.donations} charities={this.props.charities}/>
         })
     }
 
@@ -24,6 +25,8 @@ export default class Favorites extends Component{
                 <div className='fav-container'>
                     {this.createFavoriteCards()}
                 </div>
+                <h1 className="favorites">Your Donations</h1>
+                <Donations donations={this.props.donations} favorites={this.props.favorites}/>
             </div>
         )
 

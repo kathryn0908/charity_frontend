@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/Login';
 import AppMenuBar from './styles/AppBar'
 import FavoritesPage from './FavoritesPage'
+import Donations from './containers/Donations'
 
 
 
@@ -101,25 +102,17 @@ class App extends Component{
 
   addDonation = (charity_id, amount, user_id) => {
     const donation = {charity_id, amount, user_id}
+    console.log(donation)
     this.setState({donations: [...this.state.donations, donation]})
-
-    let newDonation = {
-      ...donation,
-      charity_id: 2,
-      amount: amount,
-      user_id: 3
-    }
     
     fetch(donationUrl, {
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        donation: newDonation
-      })
+      body: JSON.stringify(donation)
     })
-  };
+  }
 
   
   
@@ -141,7 +134,7 @@ class App extends Component{
                 </Route>
   
                 {/* <Route path='/donations'>
-                  <Donations
+                  <Donations donations={this.state.donations} charities={this.state.charities}/>
                 </Route> */}
                 
                 
