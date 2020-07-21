@@ -69,12 +69,12 @@ export default class CharityCard extends Component {
                 <p>{this.props.favorite.charity.donation_url}</p>
                 <p>${this.state.mostRecentDonation}.00</p>
                 <p>{this.state.checkbox ? '$'+this.state.amount : null }</p> 
-                <button key={this.props.charity.id} className="remove-fav" onClick={this.removeClick}>Remove Favorite</button> 
+                <button key={this.props.charity.id} className='button' onClick={this.removeClick}>Remove Favorite</button> 
                 <form onSubmit={this.handleSubmit}>
                 <label>I Donated!</label>
                 <input type="checkbox" value={this.state.checkbox} checked={this.state.checkbox} name="donated" onChange={this.handleChange} />
-                <input placeholder="amount" value={this.state.amount} name="amount" onChange={this.handleChange} />
-                <input type="submit" />
+                <input className='amount' placeholder="amount" value={this.state.amount} name="amount" onChange={this.handleChange} />
+                <input className='button' type="submit" />
                 </form>
               </div>
            : <div className="charity-card">
@@ -82,7 +82,7 @@ export default class CharityCard extends Component {
                 <p>{category}</p>
                 <p>{city}, {state}</p>
                 <p>{donation_url}</p>
-                <button key={id} className="add-fav" onClick={this.handleClick}>Add Favorite</button> 
+                <button key={id} className='button' onClick={this.handleClick}>Add Favorite</button> 
             </div>
            }
           

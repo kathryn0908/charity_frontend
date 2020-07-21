@@ -43,6 +43,24 @@
   justify-content: space-evenly;
 }
 
+.button{
+  font-family: 'DM Sans', sans-serif;
+  border-radius: 5px;
+  margin:8px;
+  padding: 4px;
+  border-color: white;
+  background-color: white;
+  color: rebeccapurple;
+}
+
+.amount{
+  font-family: 'DM Sans', sans-serif;
+  border-radius: 5px;
+  padding: 2px;
+  border-color: white;
+  background-color: white;
+}
+
 .info {
   display: flex;
   flex-direction: column;
