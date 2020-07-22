@@ -168,7 +168,7 @@
   color: whitesmoke;
   flex-direction: row;
   width: 300px;
-  height: 350px;
+  height: 375px;
   box-shadow: 0 6px 33px -4px black;
   text-align: center;
   font-family: 'DM Sans', sans-serif;
@@ -177,4 +177,36 @@
   margin: 13px;
   border-radius: 24px;
 
+}
+
+.total-header{
+  font-size: large;
+}
+
+.donation-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.donations-card{
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  background-color: rebeccapurple;
+  color: whitesmoke;
+  width: 300px;
+  height: 350px;
+  box-shadow: 0 6px 33px -4px black;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  overflow-wrap: anywhere;
+  padding: 19px;
+  margin: 13px;
+  border-radius: 24px;
+}
+
+.no-donation-header{
+  margin-top: 61px;
+  font-size: larger;
 }
