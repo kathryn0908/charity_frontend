@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/Login';
 import AppMenuBar from './styles/AppBar'
 import FavoritesPage from './FavoritesPage'
-import Donations from './containers/Donations'
+
 
 
 
@@ -70,31 +70,36 @@ class App extends Component{
   
 
   addFavorite = (charity_id, user_id) => {
+    // console.log(charity_id)
+    const newFavorite = {charity_id, user_id}
 
-    let foundFavorite = this.state.favorites.find(favorite => favorite.charity_id == charity_id)
+    let foundFavorite = this.state.favorites.find(favorite => charity_id === favorite.charity.id)
+    console.log(foundFavorite)
+
     if(!foundFavorite){
-      const favorite = {charity_id, user_id}
-      this.setState({favorites: [...this.state.favorites, favorite]})
+      // const favorite = {charity_id, user_id}
+      this.setState({favorites: [...this.state.favorites, newFavorite]})
+      fetch(favoritesUrl, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newFavorite)
+      })
     }
-    const favorite = {charity_id, user_id}
+    
    
-    fetch(favoritesUrl, {
-      method: "POST",
-      headers: {
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(favorite)
-    })
+    
   }
 
   
-  removeFavorite = (favorite) => {
-    console.log(favorite.id)
-    let newFavorites = this.state.favorites.filter(favorite => favorite !== favorite)
+  removeFavorite = (id) => {
+    
+    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== id)
     this.setState({favorites: newFavorites})
     
       
-      fetch(`${favoritesUrl}/${favorite.id}`, {
+      fetch(`${favoritesUrl}/${id}`, {
       method: "DELETE"
       });
   }
@@ -103,6 +108,7 @@ class App extends Component{
   addDonation = (charity_id, amount, user_id) => {
     const donation = {charity_id, amount, user_id}
     console.log(donation)
+
     this.setState({donations: [...this.state.donations, donation]})
     
     fetch(donationUrl, {
@@ -126,18 +132,13 @@ class App extends Component{
               <div className="routes">
               
                 <Route exact path='/'>
-                  <CharitiesPage charities={this.state.charities} clickAction={this.addFavorite}/>
+                  <CharitiesPage charities={this.state.charities} clickAction={this.addFavorite} />
                 </Route>
   
                 <Route path='/favorites'>
                   <FavoritesPage favorites={this.state.favorites} charities={this.state.charities} addDonation={this.addDonation} donations={this.state.donations} clickAction={this.removeFavorite} /> 
                 </Route>
   
-                {/* <Route path='/donations'>
-                  <Donations donations={this.state.donations} charities={this.state.charities}/>
-                </Route> */}
-                
-                
                 <Route path='/login' render={(routerProps) => <Login {...routerProps} login={this.login}/>}/>
                 
               </div>

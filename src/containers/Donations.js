@@ -6,7 +6,7 @@ export default class Donations extends Component{
 
     donations = () => {
         return this.props.favorites.map(favorite => {
-            return <DonationCard favorite={favorite} key={favorite.id} {...favorite}/>
+            return <DonationCard favorite={favorite} key={favorite.id} />
         })
     }
 

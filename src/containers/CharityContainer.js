@@ -10,7 +10,7 @@ export default function CharityContainer(props){
     
    const createCharityCard = () => {
         return ( 
-            props.charities.map(charity => {
+            props.charities.slice(0,20).map(charity => {
                 return <CharityCard key={charity.id} {...charity} charity={charity} clickAction={clickAction}/>
             })
         )
