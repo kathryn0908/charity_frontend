@@ -11,7 +11,7 @@ This website can currently only be accessed from a local environment. Please for
 
 https://github.com/kathryn0908/charity_backend
 
-Run back-end server first on port 8000: http://127.0.0.1:8000/.
+Run back-end server first on port 3000: http://localhost:3000/.
 
 Then front-end server on port 3001: http://localhost:3000/.
 
