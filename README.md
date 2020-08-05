@@ -32,7 +32,8 @@ https://github.com/kathryn0908/charity_backend
 
 Add favorite Charities to your profile that you would like to donate to. Once you have donated you can update the charity card with your donations and all donations, including the total amount donated is listed on your profile.
 
-
+## Blog Post on this Project:
+https://dev.to/kathryn0908/multi-relational-models-in-ruby-how-to-use-includes-to-your-advantage-2pah
 
 ## Developers
 
