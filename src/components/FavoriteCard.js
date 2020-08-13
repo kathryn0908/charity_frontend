@@ -15,8 +15,7 @@ export default class FavoriteCard extends Component {
       this.setState({amount,checkbox, user_id})
   }  
 
-  handleSubmit = (event) => {
-    //   event.preventDefault();
+  handleSubmit = () => {
       const user_id = 3
       this.props.addDonation(this.props.favorite.charity.id, this.state.amount, user_id)
   }

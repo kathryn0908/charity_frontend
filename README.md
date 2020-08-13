@@ -4,7 +4,7 @@ Charity Organizer enables users to favorite local Denver charities and keep trac
 
 ## Video Walk Through
 
-- 
+- https://youtu.be/7SXoY8_N1as
 
 
 ## Github Repo:

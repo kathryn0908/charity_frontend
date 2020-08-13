@@ -3,7 +3,6 @@ import React from 'react';
 export default function DonationCard(props){
 const displayAmount = () => {
     return props.favorite.charity.donations.map(donation => {
-        console.log(props.favorite.charity.charity_name)
         return (
             <p>Donated ${donation.amount} on {donation.created_at.slice(0,10)}</p>
         )

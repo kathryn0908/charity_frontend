@@ -70,14 +70,11 @@ class App extends Component{
   
 
   addFavorite = (charity_id, user_id) => {
-    // console.log(charity_id)
     const newFavorite = {charity_id, user_id}
 
     let foundFavorite = this.state.favorites.find(favorite => charity_id === favorite.charity.id)
-    console.log(foundFavorite)
 
     if(!foundFavorite){
-      // const favorite = {charity_id, user_id}
       this.setState({favorites: [...this.state.favorites, newFavorite]})
       fetch(favoritesUrl, {
         method: "POST",
@@ -107,7 +104,6 @@ class App extends Component{
 
   addDonation = (charity_id, amount, user_id) => {
     const donation = {charity_id, amount, user_id}
-    console.log(donation)
 
     this.setState({donations: [...this.state.donations, donation]})
     
